@@ -1,7 +1,7 @@
 export function WhyWeBuild() {
   return (
     <section className="flex flex-col gap-4 p-4 max-w-[1420px] mx-auto text-center">
-      <h2 className="text-4xl font-serif tracking-tight font-semibold">
+      <h2 className="text-5xl font-serif tracking-tight font-semibold">
         ¿Por qué estamos construyendo Welli?
       </h2>
       <p className="text-muted-foreground text-balance w-10/12 mx-auto">
