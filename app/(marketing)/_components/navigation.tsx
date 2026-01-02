@@ -19,13 +19,14 @@ import {
   navigationMenuTriggerStyle,
 } from '@/app/_components/ui/navigation-menu';
 import { Button } from '@/app/_components/ui/button';
+import { cn } from '@/app/_lib/utils';
 
 export function Navigation() {
   return (
     <NavigationMenu>
       <NavigationMenuList className="flex-wrap gap-2">
         <NavigationMenuItem>
-          <NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-background/5 backdrop-blur">
             <Link href="/">Productos</Link>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="p-2 rounded-2xl">
@@ -76,13 +77,18 @@ export function Navigation() {
         <NavigationMenuItem>
           <NavigationMenuLink
             href="/story"
-            className={navigationMenuTriggerStyle()}
+            className={cn(
+              navigationMenuTriggerStyle(),
+              'bg-background/5 backdrop-blur'
+            )}
           >
             Nuestra historia
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem className="hidden md:block">
-          <NavigationMenuTrigger>Recursos</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-background/5 backdrop-blur">
+            Recursos
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <NavigationMenuList className="grid grid-cols-3 gap-2 divide-x">
               <div className="p-2 h-full">

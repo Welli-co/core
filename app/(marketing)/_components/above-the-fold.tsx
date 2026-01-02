@@ -39,7 +39,7 @@ const DEFAULT_COUNTRY = '+57';
 
 export function AboveTheFold() {
   return (
-    <div className="pt-24 bg-radial/increasing from-primary/20 via-primary/5 to-transparent">
+    <div className="pt-24 bg-radial from-primary/5 to-transparent">
       <section className="flex flex-col items-center justify-center py-20 space-y-8 w-6/12 mx-auto text-center">
         <div className="space-y-4">
           <h1 className="text-5xl tracking-tight font-serif font-semibold">
