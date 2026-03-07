@@ -1,7 +1,7 @@
 "use client"
 
 import { useForm, Controller } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"
 import { z } from "zod"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/_components/ui/avatar"
@@ -37,7 +37,7 @@ export function PhoneLoginForm() {
     control,
     formState: { errors, isSubmitting },
   } = useForm<PhoneFormValues>({
-    resolver: zodResolver(phoneSchema),
+    resolver: standardSchemaResolver(phoneSchema),
     defaultValues: {
       countryCode: "+57",
       phone: "",

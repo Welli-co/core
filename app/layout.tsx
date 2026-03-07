@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { SessionProvider } from "@/app/_contexts/session-context";
 import "./globals.css";
+import { cn } from "@/app/_lib/utils";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={cn("font-sans", inter.variable)}>
       <body className="font-sans antialiased">
         <SessionProvider>{children}</SessionProvider>
       </body>
