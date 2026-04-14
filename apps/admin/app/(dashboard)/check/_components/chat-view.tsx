@@ -1,6 +1,14 @@
 "use client"
 
+import { PhoneIcon } from "@phosphor-icons/react/ssr"
 import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
+import { Button } from "@workspace/ui/components/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@workspace/ui/components/tooltip"
 import { cn } from "@workspace/ui/lib/utils"
 
 import type { ChatConversation } from "@/data/chats"
@@ -17,25 +25,43 @@ export function ChatView({ conversation }: ChatViewProps) {
 
   return (
     <section className="flex min-h-0 flex-col divide-y">
-      <header className="flex max-h-18.25 min-h-18.25 items-center gap-3 p-4">
-        <Avatar className="size-9">
-          <AvatarFallback
-            className={cn(
-              "font-semibold",
-              avatarGradientByStatus[conversation.status]
-            )}
-          >
-            {initials}
-          </AvatarFallback>
-        </Avatar>
-        <div className="flex min-w-0 flex-col gap-1">
-          <span className="truncate text-base leading-none font-semibold">
-            {conversation.patient.name}
-          </span>
-          <span className="truncate text-sm leading-none font-medium text-muted-foreground">
-            last seen today at 3:30 PM
-          </span>
+      <header className="flex max-h-18.25 min-h-18.25 items-center justify-between gap-3 p-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <Avatar className="size-10">
+            <AvatarFallback
+              className={cn(
+                "font-semibold",
+                avatarGradientByStatus[conversation.status]
+              )}
+            >
+              {initials}
+            </AvatarFallback>
+          </Avatar>
+          <div className="flex min-w-0 flex-col gap-1">
+            <span className="truncate text-base leading-none font-semibold">
+              {conversation.patient.name}
+            </span>
+            <span className="truncate text-sm leading-none font-medium text-muted-foreground">
+              last message today at 3:30 PM
+            </span>
+          </div>
         </div>
+        <TooltipProvider delay={200}>
+          <Tooltip>
+            <TooltipTrigger
+              render={
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  aria-label="Llamar al paciente"
+                />
+              }
+            >
+              <PhoneIcon className="size-6 -scale-x-100" />
+            </TooltipTrigger>
+            <TooltipContent>Llamar al paciente</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </header>
       <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4">
         {conversation.messages.map((message) => (
@@ -43,6 +69,7 @@ export function ChatView({ conversation }: ChatViewProps) {
             key={message.id}
             message={message}
             patientInitials={initials}
+            patientStatus={conversation.status}
           />
         ))}
       </div>

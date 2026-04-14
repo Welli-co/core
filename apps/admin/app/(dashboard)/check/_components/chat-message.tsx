@@ -4,22 +4,19 @@ import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
 import { cn } from "@workspace/ui/lib/utils"
 
 import type { ChatMessage as ChatMessageType } from "@/data/chats"
-
-const deliveryLabels: Record<
-  NonNullable<ChatMessageType["deliveryStatus"]>,
-  string
-> = {
-  sent: "Enviado",
-  delivered: "Entregado",
-  read: "Leído",
-}
+import { avatarGradientByStatus, type LoanStatus } from "@/data/loans"
 
 type ChatMessageProps = {
   message: ChatMessageType
   patientInitials: string
+  patientStatus: LoanStatus
 }
 
-export function ChatMessage({ message, patientInitials }: ChatMessageProps) {
+export function ChatMessage({
+  message,
+  patientInitials,
+  patientStatus,
+}: ChatMessageProps) {
   const isSystem = message.authorType === "system"
 
   return (
@@ -31,36 +28,29 @@ export function ChatMessage({ message, patientInitials }: ChatMessageProps) {
     >
       {!isSystem && (
         <Avatar className="size-8">
-          <AvatarFallback className="text-xs font-semibold">
+          <AvatarFallback
+            className={cn(
+              "text-xs font-semibold",
+              avatarGradientByStatus[patientStatus]
+            )}
+          >
             {patientInitials}
           </AvatarFallback>
         </Avatar>
       )}
       <div
         className={cn(
-          "flex max-w-[22rem] flex-col gap-1 rounded-2xl p-3 text-sm",
-          isSystem
-            ? "rounded-br-sm bg-emerald-500 text-white"
-            : "rounded-bl-sm bg-muted text-foreground"
+          "flex max-w-[22rem] flex-col gap-1 rounded-2xl p-3 text-sm text-foreground",
+          isSystem ? "rounded-br-sm bg-[#D0FECF]" : "rounded-bl-sm bg-muted"
         )}
       >
         <div className="flex items-center gap-2">
           <span className="text-sm font-semibold">{message.authorName}</span>
-          <span
-            className={cn(
-              "text-xs",
-              isSystem ? "text-emerald-100" : "text-muted-foreground"
-            )}
-          >
+          <span className="text-xs text-muted-foreground">
             {message.sentAt}
           </span>
         </div>
         <p className="leading-snug">{message.body}</p>
-        {isSystem && message.deliveryStatus && (
-          <span className="self-end text-xs text-emerald-100">
-            {deliveryLabels[message.deliveryStatus]}
-          </span>
-        )}
       </div>
     </div>
   )

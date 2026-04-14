@@ -46,7 +46,7 @@ export function ChatList({ chats, activeId, onSelect }: ChatListProps) {
                   />
                 }
               >
-                <PlusCircleIcon className="size-5" />
+                <PlusCircleIcon className="size-6" />
               </TooltipTrigger>
               <TooltipContent>Nueva conversación</TooltipContent>
             </Tooltip>
@@ -60,7 +60,7 @@ export function ChatList({ chats, activeId, onSelect }: ChatListProps) {
                   />
                 }
               >
-                <FileCsvIcon className="size-5" />
+                <FileCsvIcon className="size-6" />
               </TooltipTrigger>
               <TooltipContent>Crear en masa</TooltipContent>
             </Tooltip>
