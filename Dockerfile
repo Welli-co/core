@@ -1,6 +1,6 @@
-# syntax=docker/dockerfile:1.7
 # Multi-stage Dockerfile for Next.js admin app in a pnpm + Turborepo monorepo.
 # Produces a slim runner image using Next.js `output: "standalone"`.
+# Compatible with both classic Docker builder (Cloud Build) and BuildKit.
 
 ARG NODE_VERSION=22-alpine
 
@@ -19,8 +19,7 @@ COPY apps/storybook/package.json ./apps/storybook/
 COPY packages/ui/package.json ./packages/ui/
 COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/typescript-config/package.json ./packages/typescript-config/
-RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # ─── builder ──────────────────────────────────────────────────────────────────
 FROM base AS builder
