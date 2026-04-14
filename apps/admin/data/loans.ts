@@ -148,3 +148,9 @@ export async function getLoansByState(
   const status = loanStateSlugs[slug]
   return loans.filter((loan) => loan.status === status)
 }
+
+export async function getLoanById(
+  id: string
+): Promise<LoanApplication | null> {
+  return loans.find((loan) => loan.id === id) ?? null
+}

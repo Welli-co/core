@@ -2,23 +2,29 @@
 
 import * as React from "react"
 import {
-  AppWindow,
-  ChatCircleText,
-  CheckCircle,
-  Circle,
-  CircleDashed,
-  CircleHalf,
-  CircleNotch,
-  CirclesThreePlus,
-  Command,
-  DeviceTabletSpeaker,
-  MapPinArea,
-  Package,
-  Pulse,
-  SealPercent,
-  Unite,
+  AppWindowIcon,
+  ChatCircleTextIcon,
+  CheckCircleIcon,
+  CircleDashedIcon,
+  CircleHalfIcon,
+  CirclesThreePlusIcon,
+  ClockCountdownIcon,
+  CommandIcon,
+  DeviceTabletSpeakerIcon,
+  HandWithdrawIcon,
+  HeartbeatIcon,
+  MapPinAreaIcon,
+  PackageIcon,
+  SealPercentIcon,
+  StopCircleIcon,
+  UniteIcon,
 } from "@phosphor-icons/react/ssr"
 
+import {
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from "@workspace/ui/components/drawer"
 import {
   Sidebar,
   SidebarContent,
@@ -43,17 +49,17 @@ const user = {
 const locations = [
   {
     commercialName: "Dentix Sede La Playa",
-    logo: Command,
+    logo: CommandIcon,
     legalName: "DENTIX S.A.S",
   },
   {
     commercialName: "Dentix Sede Chapinero",
-    logo: MapPinArea,
+    logo: MapPinAreaIcon,
     legalName: "DENTIX S.A.S",
   },
   {
     commercialName: "Dentix Sede Suba Subsidiada",
-    logo: MapPinArea,
+    logo: MapPinAreaIcon,
     legalName: "DENTIX S.A.S",
   },
 ]
@@ -62,14 +68,14 @@ const creditStatuses: SidebarNavItem[] = [
   {
     title: "En revisión",
     url: "/en-revision",
-    icon: CircleDashed,
-    iconWeight: "fill",
+    icon: CircleDashedIcon,
+    iconWeight: "bold",
     iconClassName: "text-orange-500",
   },
   {
     title: "Aprobados",
     url: "/aprobados",
-    icon: CircleHalf,
+    icon: CircleHalfIcon,
     iconWeight: "fill",
     iconClassName: "text-sky-500",
     count: 1,
@@ -77,14 +83,14 @@ const creditStatuses: SidebarNavItem[] = [
   {
     title: "En progreso",
     url: "/en-progreso",
-    icon: CircleNotch,
-    iconWeight: "bold",
+    icon: ClockCountdownIcon,
+    iconWeight: "fill",
     iconClassName: "text-indigo-500",
   },
   {
     title: "Completados",
     url: "/completados",
-    icon: CheckCircle,
+    icon: CheckCircleIcon,
     iconWeight: "fill",
     iconClassName: "text-emerald-500",
     count: 4,
@@ -92,18 +98,15 @@ const creditStatuses: SidebarNavItem[] = [
   {
     title: "Cerrados",
     url: "/cerrados",
-    icon: Circle,
+    icon: StopCircleIcon,
     iconWeight: "fill",
-    iconClassName: "text-purple-500",
+    iconClassName: "text-neutral-500",
   },
-]
-
-const pulso: SidebarNavItem[] = [
   {
     title: "Pulso",
-    url: "/",
-    icon: Pulse,
-    iconWeight: "fill",
+    url: "/pulse",
+    icon: HeartbeatIcon,
+    iconWeight: "duotone",
     iconClassName: "text-muted-foreground",
   },
 ]
@@ -112,27 +115,37 @@ const salesChannels: SidebarNavItem[] = [
   {
     title: "Welli App",
     url: "#",
-    icon: DeviceTabletSpeaker,
+    icon: DeviceTabletSpeakerIcon,
+    trailingIcon: HandWithdrawIcon,
+    drawer: (
+      <DrawerHeader>
+        <DrawerTitle>Welli App</DrawerTitle>
+        <DrawerDescription>
+          Solicita un desembolso o comparte el acceso a la aplicación con tus
+          pacientes.
+        </DrawerDescription>
+      </DrawerHeader>
+    ),
   },
   {
     title: "Welli Benefits",
-    url: "#",
-    icon: SealPercent,
+    url: "/benefits",
+    icon: SealPercentIcon,
   },
   {
     title: "Welli Check WhatsApp",
-    url: "#",
-    icon: ChatCircleText,
+    url: "/check",
+    icon: ChatCircleTextIcon,
   },
   {
     title: "Welli Website Widget",
-    url: "#",
-    icon: AppWindow,
+    url: "/code",
+    icon: AppWindowIcon,
   },
   {
     title: "Integradores",
-    url: "#",
-    icon: Unite,
+    url: "/integrators",
+    icon: UniteIcon,
   },
 ]
 
@@ -140,13 +153,13 @@ const medicalEquipment: SidebarNavItem[] = [
   {
     title: "Solicitar crédito",
     url: "#",
-    icon: CirclesThreePlus,
+    icon: CirclesThreePlusIcon,
     external: true,
   },
   {
     title: "Mis equipos médicos",
     url: "#",
-    icon: Package,
+    icon: PackageIcon,
     external: true,
   },
 ]
@@ -159,7 +172,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent className="divide-y">
         <SidebarNavGroup label="CREDITOS PACIENTES" items={creditStatuses} />
-        <SidebarNavGroup items={pulso} />
         <SidebarNavGroup
           label="CANALES DE VENTA"
           items={salesChannels}

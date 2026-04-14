@@ -1,9 +1,14 @@
 "use client"
 
 import type { IconWeight } from "@phosphor-icons/react"
-import { ArrowUpRight } from "@phosphor-icons/react/ssr"
+import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
 import { usePathname } from "next/navigation"
 
+import {
+  Drawer,
+  DrawerContent,
+  DrawerTrigger,
+} from "@workspace/ui/components/drawer"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -22,6 +27,8 @@ export type SidebarNavItem = {
   iconClassName?: string
   count?: number
   external?: boolean
+  trailingIcon?: React.ElementType
+  drawer?: React.ReactNode
 }
 
 type SidebarNavGroupProps = {
@@ -44,13 +51,19 @@ export function SidebarNavGroup({
       {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
       <SidebarMenu>
         {items.map((item) => {
-          const isActive = !item.external && pathname === item.url
-          return (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton
-                tooltip={item.title}
-                isActive={isActive}
-                render={
+          const isActive =
+            !item.external && !item.drawer && pathname === item.url
+          const TrailingIcon =
+            item.trailingIcon ?? (item.external ? ArrowUpRightIcon : null)
+
+          const button = (
+            <SidebarMenuButton
+              tooltip={item.title}
+              isActive={isActive}
+              render={
+                item.drawer ? (
+                  <button type="button" />
+                ) : (
                   <a
                     href={item.url}
                     {...(item.external && {
@@ -58,17 +71,30 @@ export function SidebarNavGroup({
                       rel: "noopener noreferrer",
                     })}
                   />
-                }
-              >
-                <item.icon
-                  weight={item.iconWeight ?? "duotone"}
-                  className={item.iconClassName ?? "text-muted-foreground"}
-                />
-                <span>{item.title}</span>
-                {item.external && (
-                  <ArrowUpRight className="ml-auto size-4! text-muted-foreground" />
-                )}
-              </SidebarMenuButton>
+                )
+              }
+            >
+              <item.icon
+                weight={item.iconWeight ?? "duotone"}
+                className={item.iconClassName ?? "text-muted-foreground"}
+              />
+              <span>{item.title}</span>
+              {TrailingIcon && (
+                <TrailingIcon className="ml-auto text-muted-foreground" />
+              )}
+            </SidebarMenuButton>
+          )
+
+          return (
+            <SidebarMenuItem key={item.title}>
+              {item.drawer ? (
+                <Drawer>
+                  <DrawerTrigger asChild>{button}</DrawerTrigger>
+                  <DrawerContent>{item.drawer}</DrawerContent>
+                </Drawer>
+              ) : (
+                button
+              )}
               {item.count !== undefined && (
                 <SidebarMenuBadge className="bg-muted text-muted-foreground">
                   {item.count}
