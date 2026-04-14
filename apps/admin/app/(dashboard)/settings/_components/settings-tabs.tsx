@@ -16,7 +16,8 @@ export const settingsTabs = [
 export function SettingsTabs() {
   const pathname = usePathname()
   const active =
-    settingsTabs.find((tab) => pathname.startsWith(tab.href))?.href ?? settingsTabs[0].href
+    settingsTabs.find((tab) => pathname.startsWith(tab.href))?.href ??
+    settingsTabs[0].href
 
   return (
     <Tabs value={active}>
