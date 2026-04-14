@@ -40,12 +40,7 @@ export function NavUser() {
   const { user } = useSession()
   const [recommendOpen, setRecommendOpen] = React.useState(false)
 
-  const initials = user.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2)
+  const initials = user.name.charAt(0).toUpperCase()
 
   return (
     <>
@@ -60,9 +55,9 @@ export function NavUser() {
                 />
               }
             >
-              <Avatar className="h-8 w-8 rounded-lg">
+              <Avatar className="size-8">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">
+                <AvatarFallback className="bg-radial-[at_25%_25%] from-yellow-300 to-yellow-500 font-semibold text-foreground">
                   {initials}
                 </AvatarFallback>
               </Avatar>

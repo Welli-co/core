@@ -67,7 +67,7 @@ const discountSchema = z
       message: "Selecciona el tipo de descuento.",
     }),
     value: z.number().optional(),
-    visibleToAllWelliBenefits: z.boolean().default(false),
+    visibleToAllWelliBenefits: z.boolean(),
   })
   .superRefine((data, ctx) => {
     if (data.discountType === "2x1") return

@@ -20,6 +20,16 @@ type ChatViewProps = {
   conversation: ChatConversation
 }
 
+function formatLastMessage(lastActivity: string) {
+  if (lastActivity.toLowerCase() === "ayer") {
+    return "Último mensaje ayer"
+  }
+  if (lastActivity.includes(":")) {
+    return `Último mensaje hoy a las ${lastActivity}`
+  }
+  return `Último mensaje el ${lastActivity}`
+}
+
 export function ChatView({ conversation }: ChatViewProps) {
   const initials = getInitials(conversation.patient.name)
 
@@ -42,7 +52,7 @@ export function ChatView({ conversation }: ChatViewProps) {
               {conversation.patient.name}
             </span>
             <span className="truncate text-sm leading-none font-medium text-muted-foreground">
-              last message today at 3:30 PM
+              {formatLastMessage(conversation.lastActivity)}
             </span>
           </div>
         </div>
@@ -52,12 +62,13 @@ export function ChatView({ conversation }: ChatViewProps) {
               render={
                 <Button
                   size="icon"
-                  variant="ghost"
+                  variant="secondary"
+                  className="border-2 border-border"
                   aria-label="Llamar al paciente"
                 />
               }
             >
-              <PhoneIcon className="size-6 -scale-x-100" />
+              <PhoneIcon className="size-5" />
             </TooltipTrigger>
             <TooltipContent>Llamar al paciente</TooltipContent>
           </Tooltip>

@@ -89,8 +89,8 @@ export type Session = {
 // ─── Mock data ────────────────────────────────────────────────────────────
 const session: Session = {
   user: {
-    name: "Admin",
-    email: "admin@example.com",
+    name: "Felipe W.",
+    email: "felipe@welli.com.co",
     avatar: "",
     permissions: [
       "org:settings:read",

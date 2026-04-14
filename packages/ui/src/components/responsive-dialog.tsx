@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import type { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile"
 import {
@@ -42,10 +41,20 @@ function useResponsiveDialog() {
   return ctx
 }
 
+/** Subset of props common to both base-ui Dialog.Root and vaul Drawer.Root. */
+type ResponsiveDialogProps = {
+  open?: boolean
+  defaultOpen?: boolean
+  onOpenChange?: (open: boolean) => void
+  children?: React.ReactNode
+}
+
 function ResponsiveDialog({
+  open,
+  defaultOpen,
+  onOpenChange,
   children,
-  ...props
-}: DialogPrimitive.Root.Props) {
+}: ResponsiveDialogProps) {
   const isMobile = useIsMobile()
 
   const content = (
@@ -55,10 +64,22 @@ function ResponsiveDialog({
   )
 
   if (isMobile) {
-    return <Drawer {...props}>{content}</Drawer>
+    return (
+      <Drawer
+        open={open}
+        defaultOpen={defaultOpen}
+        onOpenChange={onOpenChange}
+      >
+        {content}
+      </Drawer>
+    )
   }
 
-  return <Dialog {...props}>{content}</Dialog>
+  return (
+    <Dialog open={open} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
+      {content}
+    </Dialog>
+  )
 }
 
 /**
@@ -69,79 +90,63 @@ function ResponsiveDialog({
  */
 function ResponsiveDialogTrigger({
   children,
-  ...props
 }: {
   children: React.ReactElement
-} & Omit<React.ComponentProps<typeof DialogTrigger>, "render" | "children">) {
+}) {
   const { isMobile } = useResponsiveDialog()
 
   if (isMobile) {
-    return (
-      <DrawerTrigger asChild {...props}>
-        {children}
-      </DrawerTrigger>
-    )
+    return <DrawerTrigger asChild>{children}</DrawerTrigger>
   }
 
-  return <DialogTrigger {...props} render={children} />
+  return <DialogTrigger render={children} />
 }
 
-function ResponsiveDialogContent({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<typeof DialogContent>) {
+/** Common subset of props for the slot components. base-ui and vaul types
+ *  both accept these two, so narrowing here keeps the wrapper portable. */
+type SlotProps = {
+  className?: string
+  children?: React.ReactNode
+}
+
+function ResponsiveDialogContent({ children, className }: SlotProps) {
   const { isMobile } = useResponsiveDialog()
 
   if (isMobile) {
     return <DrawerContent className={className}>{children}</DrawerContent>
   }
 
-  return (
-    <DialogContent className={className} {...props}>
-      {children}
-    </DialogContent>
-  )
+  return <DialogContent className={className}>{children}</DialogContent>
 }
 
-function ResponsiveDialogHeader({
-  ...props
-}: React.ComponentProps<typeof DialogHeader>) {
+function ResponsiveDialogHeader({ children, className }: SlotProps) {
   const { isMobile } = useResponsiveDialog()
   const Header = isMobile ? DrawerHeader : DialogHeader
-  return <Header {...props} />
+  return <Header className={className}>{children}</Header>
 }
 
-function ResponsiveDialogFooter({
-  ...props
-}: React.ComponentProps<typeof DialogFooter>) {
+function ResponsiveDialogFooter({ children, className }: SlotProps) {
   const { isMobile } = useResponsiveDialog()
   const Footer = isMobile ? DrawerFooter : DialogFooter
-  return <Footer {...props} />
+  return <Footer className={className}>{children}</Footer>
 }
 
-function ResponsiveDialogTitle({
-  ...props
-}: React.ComponentProps<typeof DialogTitle>) {
+function ResponsiveDialogTitle({ children, className }: SlotProps) {
   const { isMobile } = useResponsiveDialog()
   const Title = isMobile ? DrawerTitle : DialogTitle
-  return <Title {...props} />
+  return <Title className={className}>{children}</Title>
 }
 
-function ResponsiveDialogDescription({
-  ...props
-}: React.ComponentProps<typeof DialogDescription>) {
+function ResponsiveDialogDescription({ children, className }: SlotProps) {
   const { isMobile } = useResponsiveDialog()
   const Description = isMobile ? DrawerDescription : DialogDescription
-  return <Description {...props} />
+  return <Description className={className}>{children}</Description>
 }
 
-function ResponsiveDialogClose({
-  ...props
-}: React.ComponentProps<typeof DialogClose>) {
+function ResponsiveDialogClose({ children, className }: SlotProps) {
   const { isMobile } = useResponsiveDialog()
   const Close = isMobile ? DrawerClose : DialogClose
-  return <Close {...props} />
+  return <Close className={className}>{children}</Close>
 }
 
 export {

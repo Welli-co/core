@@ -41,12 +41,13 @@ export function ChatList({ chats, activeId, onSelect }: ChatListProps) {
                 render={
                   <Button
                     size="icon"
-                    variant="ghost"
+                    variant="secondary"
+                    className="border-2 border-border"
                     aria-label="Nueva conversación"
                   />
                 }
               >
-                <PlusCircleIcon className="size-6" />
+                <PlusCircleIcon className="size-5" />
               </TooltipTrigger>
               <TooltipContent>Nueva conversación</TooltipContent>
             </Tooltip>
@@ -55,12 +56,13 @@ export function ChatList({ chats, activeId, onSelect }: ChatListProps) {
                 render={
                   <Button
                     size="icon"
-                    variant="ghost"
+                    variant="secondary"
+                    className="border-2 border-border"
                     aria-label="Crear conversaciones en masa"
                   />
                 }
               >
-                <FileCsvIcon className="size-6" />
+                <FileCsvIcon className="size-5" />
               </TooltipTrigger>
               <TooltipContent>Crear en masa</TooltipContent>
             </Tooltip>

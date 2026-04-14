@@ -17,8 +17,9 @@ export function IntegratorsTabs() {
   const active =
     [...tabs]
       .sort((a, b) => b.href.length - a.href.length)
-      .find((tab) => pathname === tab.href || pathname.startsWith(`${tab.href}/`))
-      ?.href ?? tabs[0].href
+      .find(
+        (tab) => pathname === tab.href || pathname.startsWith(`${tab.href}/`)
+      )?.href ?? tabs[0].href
 
   return (
     <Tabs value={active}>
