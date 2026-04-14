@@ -57,7 +57,7 @@ export function LocationSwitcher({
                 src={activeLocation.avatar}
                 alt={activeLocation.commercialName}
               />
-              <AvatarFallback className="rounded-lg bg-primary text-primary-foreground">
+              <AvatarFallback className="rounded-md bg-primary text-primary-foreground">
                 <Asclepius weight="fill" className="size-5" />
               </AvatarFallback>
             </Avatar>
