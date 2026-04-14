@@ -23,7 +23,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@workspace/ui/components/tooltip"
-import { Sidebar as SidebarIcon } from "@phosphor-icons/react/ssr"
+import { ListIcon } from "@phosphor-icons/react/ssr"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -262,16 +262,16 @@ function SidebarTrigger({
     <Button
       data-sidebar="trigger"
       data-slot="sidebar-trigger"
-      variant="ghost"
-      size="icon-sm"
-      className={cn(className)}
+      variant="secondary"
+      size="icon"
+      className={cn("border-2 border-border", className)}
       onClick={(event) => {
         onClick?.(event)
         toggleSidebar()
       }}
       {...props}
     >
-      <SidebarIcon />
+      <ListIcon className="size-5" weight="duotone" />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )

@@ -22,7 +22,8 @@ const avatarGradientByStatus: Record<LoanStatus, string> = {
     "bg-radial-[at_25%_25%] from-indigo-300 to-indigo-600 text-white",
   Completado:
     "bg-radial-[at_25%_25%] from-emerald-300 to-emerald-600 text-white",
-  Cerrado: "bg-radial-[at_25%_25%] from-purple-300 to-purple-600 text-white",
+  Cerrado:
+    "bg-radial-[at_25%_25%] from-neutral-300 to-neutral-600 text-white",
 }
 
 export const loanColumns: ColumnDef<LoanApplication>[] = [
@@ -62,6 +63,21 @@ export const loanColumns: ColumnDef<LoanApplication>[] = [
           <span className="truncate text-sm font-medium">{patient.phone}</span>
           <span className="truncate text-sm font-medium text-muted-foreground">
             {patient.email}
+          </span>
+        </div>
+      )
+    },
+  },
+  {
+    id: "procedimiento",
+    header: "Procedimiento",
+    cell: ({ row }) => {
+      const { procedure } = row.original
+      return (
+        <div className="grid min-w-0 text-left leading-tight">
+          <span className="truncate text-sm font-medium">{procedure.name}</span>
+          <span className="truncate text-sm font-medium text-muted-foreground">
+            {procedure.specialty}
           </span>
         </div>
       )

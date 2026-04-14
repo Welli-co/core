@@ -11,7 +11,10 @@ import { TypographyH1 } from "@workspace/ui/components/typography"
 type PlaceholderPageProps = {
   title: string
   description: string
-  icon: React.ComponentType<{ weight?: "duotone" | "fill" | "bold"; className?: string }>
+  icon: React.ComponentType<{
+    weight?: "duotone" | "fill" | "bold"
+    className?: string
+  }>
 }
 
 export function PlaceholderPage({
@@ -21,7 +24,7 @@ export function PlaceholderPage({
 }: PlaceholderPageProps) {
   return (
     <main className="divide-y">
-      <section className="flex items-center justify-between p-4">
+      <section className="flex min-h-18.25 items-center justify-between p-4">
         <TypographyH1 className="text-lg leading-none">{title}</TypographyH1>
       </section>
       <section className="flex flex-1 p-4">

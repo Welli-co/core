@@ -1,4 +1,4 @@
-import { SealPercentIcon } from "@phosphor-icons/react/dist/ssr"
+import { SealPercentIcon } from "@phosphor-icons/react/ssr"
 
 import { PlaceholderPage } from "../_components/placeholder-page"
 

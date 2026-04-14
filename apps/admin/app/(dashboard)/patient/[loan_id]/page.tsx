@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { CaretLeftIcon } from "@phosphor-icons/react/dist/ssr"
+import { CaretLeftIcon } from "@phosphor-icons/react/ssr"
 
 import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
 import { Badge } from "@workspace/ui/components/badge"

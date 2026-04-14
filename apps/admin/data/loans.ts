@@ -13,6 +13,10 @@ export type LoanApplication = {
     phone: string
     document: string
   }
+  procedure: {
+    name: string
+    specialty: string
+  }
   amount: number
   status: LoanStatus
   appliedAt: string
@@ -25,7 +29,7 @@ export const statusStyles: Record<LoanStatus, string> = {
   Aprobado: "bg-sky-100 text-sky-700 hover:bg-sky-100",
   "En progreso": "bg-indigo-100 text-indigo-700 hover:bg-indigo-100",
   Completado: "bg-emerald-100 text-emerald-700 hover:bg-emerald-100",
-  Cerrado: "bg-purple-100 text-purple-700 hover:bg-purple-100",
+  Cerrado: "bg-neutral-100 text-neutral-700 hover:bg-neutral-100",
 }
 
 const loans: LoanApplication[] = [
@@ -36,6 +40,10 @@ const loans: LoanApplication[] = [
       email: "maria.fernandez@example.com",
       phone: "+57 301 234 5678",
       document: "CC 1.023.456.789",
+    },
+    procedure: {
+      name: "Implante dental unitario",
+      specialty: "Odontología",
     },
     amount: 4_500_000,
     status: "En revisión",
@@ -50,6 +58,10 @@ const loans: LoanApplication[] = [
       phone: "+57 312 876 5432",
       document: "CC 79.345.221",
     },
+    procedure: {
+      name: "Ortodoncia correctiva",
+      specialty: "Ortodoncia",
+    },
     amount: 8_200_000,
     status: "Aprobado",
     appliedAt: "11 Abr 2026",
@@ -62,6 +74,10 @@ const loans: LoanApplication[] = [
       email: "ana.lopez@example.com",
       phone: "+57 320 555 1122",
       document: "CC 52.112.908",
+    },
+    procedure: {
+      name: "Blanqueamiento dental",
+      specialty: "Estética dental",
     },
     amount: 2_750_000,
     status: "En progreso",
@@ -76,6 +92,10 @@ const loans: LoanApplication[] = [
       phone: "+57 315 998 7766",
       document: "CC 1.098.776.544",
     },
+    procedure: {
+      name: "Rehabilitación oral completa",
+      specialty: "Rehabilitación oral",
+    },
     amount: 12_300_000,
     status: "Completado",
     appliedAt: "08 Abr 2026",
@@ -89,6 +109,10 @@ const loans: LoanApplication[] = [
       phone: "+57 304 444 3322",
       document: "CC 43.887.221",
     },
+    procedure: {
+      name: "Endodoncia multirradicular",
+      specialty: "Endodoncia",
+    },
     amount: 6_900_000,
     status: "En revisión",
     appliedAt: "07 Abr 2026",
@@ -101,6 +125,10 @@ const loans: LoanApplication[] = [
       email: "andres.ortiz@example.com",
       phone: "+57 318 222 8899",
       document: "CC 1.045.662.109",
+    },
+    procedure: {
+      name: "Cirugía maxilofacial",
+      specialty: "Cirugía oral",
     },
     amount: 15_000_000,
     status: "Cerrado",

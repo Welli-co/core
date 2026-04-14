@@ -1,31 +1,28 @@
-import { CircleHalfIcon } from "@phosphor-icons/react/dist/ssr"
-import { Badge } from "@workspace/ui/components/badge"
-import { cn } from "@workspace/ui/lib/utils"
+import { TypographyH1 } from "@workspace/ui/components/typography"
 
-import { getLoans, statusStyles } from "@/data/loans"
+import { Notifications } from "@/components/notifications"
 
-import { loanColumns } from "./_components/loans-columns"
-import { LoansTable } from "./_components/loans-table"
-import { LoansToolbar } from "./_components/loans-toolbar"
-
-export default async function Page() {
-  const loans = await getLoans()
-
+export default function Page() {
   return (
     <main className="divide-y">
-      <LoansToolbar
-        title="Creditos Pacientes"
-        badge={
-          <Badge
-            variant="secondary"
-            className={cn("text-sm", statusStyles.Aprobado)}
-          >
-            <CircleHalfIcon weight="fill" className="size-5" />
-            Aprobado
-          </Badge>
-        }
-      />
-      <LoansTable columns={loanColumns} data={loans} />
+      <section className="flex items-center justify-between p-4">
+        <div className="flex flex-col gap-2">
+          <TypographyH1 className="text-lg leading-none">
+            Buenos días, Martina
+          </TypographyH1>
+          <p className="text-sm leading-none text-muted-foreground">
+            Tienes{" "}
+            <span className="font-semibold text-foreground">2 solicitudes</span>{" "}
+            por desembolsar y{" "}
+            <span className="font-semibold text-foreground">6 pacientes</span>{" "}
+            pendientes de firma.
+          </p>
+        </div>
+        <div className="flex gap-1">
+          <Notifications />
+        </div>
+      </section>
+      <section></section>
     </main>
   )
 }

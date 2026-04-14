@@ -18,7 +18,7 @@ import {
   SealPercentIcon,
   StopCircleIcon,
   UniteIcon,
-} from "@phosphor-icons/react/ssr"
+} from "@phosphor-icons/react"
 
 import {
   DrawerDescription,
@@ -104,10 +104,10 @@ const creditStatuses: SidebarNavItem[] = [
   },
   {
     title: "Pulso",
-    url: "/pulse",
+    url: "/",
     icon: HeartbeatIcon,
     iconWeight: "duotone",
-    iconClassName: "text-muted-foreground",
+    iconClassName: "text-muted-foreground animate-pulse",
   },
 ]
 

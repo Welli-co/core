@@ -4,7 +4,7 @@ import {
   MagnifyingGlassIcon,
   MicrosoftExcelLogoIcon,
   SortAscendingIcon,
-} from "@phosphor-icons/react/dist/ssr"
+} from "@phosphor-icons/react/ssr"
 import { Button } from "@workspace/ui/components/button"
 import {
   Tooltip,
@@ -34,7 +34,7 @@ export function LoansToolbar({ title, badge }: LoansToolbarProps) {
                 <Button
                   size="icon"
                   variant="secondary"
-                  className="border border-border"
+                  className="border-2 border-border"
                   aria-label="Buscar"
                 />
               }
@@ -49,7 +49,7 @@ export function LoansToolbar({ title, badge }: LoansToolbarProps) {
                 <Button
                   size="icon"
                   variant="secondary"
-                  className="border border-border"
+                  className="border-2 border-border"
                   aria-label="Calendario"
                 />
               }
@@ -64,7 +64,7 @@ export function LoansToolbar({ title, badge }: LoansToolbarProps) {
                 <Button
                   size="icon"
                   variant="secondary"
-                  className="border border-border"
+                  className="border-2 border-border"
                   aria-label="Ordenar"
                 />
               }
@@ -79,7 +79,7 @@ export function LoansToolbar({ title, badge }: LoansToolbarProps) {
                 <Button
                   size="icon"
                   variant="secondary"
-                  className="border border-border"
+                  className="border-2 border-border"
                   aria-label="Filtrar"
                 />
               }

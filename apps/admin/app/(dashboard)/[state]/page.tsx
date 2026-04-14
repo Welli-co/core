@@ -1,11 +1,12 @@
 import { notFound } from "next/navigation"
+import type { IconWeight } from "@phosphor-icons/react"
 import {
   CheckCircleIcon,
   CircleDashedIcon,
   CircleHalfIcon,
-  CircleIcon,
-  CircleNotchIcon,
-} from "@phosphor-icons/react/dist/ssr"
+  ClockCountdownIcon,
+  StopCircleIcon,
+} from "@phosphor-icons/react/ssr"
 import { Badge } from "@workspace/ui/components/badge"
 import { cn } from "@workspace/ui/lib/utils"
 
@@ -22,12 +23,18 @@ import { loanColumns } from "../_components/loans-columns"
 import { LoansTable } from "../_components/loans-table"
 import { LoansToolbar } from "../_components/loans-toolbar"
 
-const statusIcons: Record<LoanStatus, React.ComponentType<{ className?: string; weight?: "fill" | "bold" | "regular" }>> = {
-  "En revisión": CircleDashedIcon,
-  Aprobado: CircleHalfIcon,
-  "En progreso": CircleNotchIcon,
-  Completado: CheckCircleIcon,
-  Cerrado: CircleIcon,
+const statusIcons: Record<
+  LoanStatus,
+  {
+    icon: React.ComponentType<{ className?: string; weight?: IconWeight }>
+    weight: IconWeight
+  }
+> = {
+  "En revisión": { icon: CircleDashedIcon, weight: "bold" },
+  Aprobado: { icon: CircleHalfIcon, weight: "fill" },
+  "En progreso": { icon: ClockCountdownIcon, weight: "fill" },
+  Completado: { icon: CheckCircleIcon, weight: "fill" },
+  Cerrado: { icon: StopCircleIcon, weight: "fill" },
 }
 
 export default async function StatePage({
@@ -44,7 +51,7 @@ export default async function StatePage({
   const slug = state as LoanStateSlug
   const status = loanStateSlugs[slug]
   const loans = await getLoansByState(slug)
-  const Icon = statusIcons[status]
+  const { icon: Icon, weight } = statusIcons[status]
 
   return (
     <main className="divide-y">
@@ -55,7 +62,7 @@ export default async function StatePage({
             variant="secondary"
             className={cn("text-sm", statusStyles[status])}
           >
-            <Icon className="size-5" weight="fill" />
+            <Icon className="size-5" weight={weight} />
             {status}
           </Badge>
         }

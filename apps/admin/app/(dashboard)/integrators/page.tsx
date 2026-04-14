@@ -1,4 +1,4 @@
-import { UniteIcon } from "@phosphor-icons/react/dist/ssr"
+import { UniteIcon } from "@phosphor-icons/react/ssr"
 
 import { PlaceholderPage } from "../_components/placeholder-page"
 
