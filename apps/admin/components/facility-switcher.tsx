@@ -1,7 +1,12 @@
 "use client"
 
-import * as React from "react"
-import { Asclepius, CaretDownIcon, Plus } from "@phosphor-icons/react/ssr"
+import {
+  Asclepius,
+  CaretUpDownIcon,
+  CommandIcon,
+  MapPinAreaIcon,
+  Plus,
+} from "@phosphor-icons/react/ssr"
 
 import {
   Avatar,
@@ -25,20 +30,20 @@ import {
   useSidebar,
 } from "@workspace/ui/components/sidebar"
 
-export function LocationSwitcher({
-  locations,
-}: {
-  locations: {
-    commercialName: string
-    logo: React.ElementType
-    legalName: string
-    avatar?: string
-  }[]
-}) {
-  const { isMobile } = useSidebar()
-  const [activeLocation, setActiveLocation] = React.useState(locations[0])
+import { useFacility } from "@/contexts/facility-context"
+import type { FacilityLogo } from "@/data/session"
+import { Button } from "@workspace/ui/components/button"
 
-  if (!activeLocation) return null
+const logoIcons: Record<FacilityLogo, React.ElementType> = {
+  command: CommandIcon,
+  "map-pin": MapPinAreaIcon,
+}
+
+export function FacilitySwitcher() {
+  const { isMobile } = useSidebar()
+  const { facilities, currentFacility, setCurrentFacility } = useFacility()
+
+  if (!currentFacility) return null
 
   return (
     <SidebarMenu>
@@ -54,8 +59,8 @@ export function LocationSwitcher({
           >
             <Avatar className="size-9 rounded-lg">
               <AvatarImage
-                src={activeLocation.avatar}
-                alt={activeLocation.commercialName}
+                src={currentFacility.avatar}
+                alt={currentFacility.commercialName}
               />
               <AvatarFallback className="rounded-md bg-primary text-primary-foreground">
                 <Asclepius weight="fill" className="size-5" />
@@ -63,13 +68,15 @@ export function LocationSwitcher({
             </Avatar>
             <div className="grid flex-1 gap-0.5 text-left text-sm leading-tight">
               <span className="truncate font-semibold">
-                {activeLocation.commercialName}
+                {currentFacility.commercialName}
               </span>
               <span className="truncate text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
-                {activeLocation.legalName}
+                {currentFacility.legalName}
               </span>
             </div>
-            <CaretDownIcon className="ml-auto" />
+            <div className="rounded-sm border py-1">
+              <CaretUpDownIcon className="ml-auto size-4!" />
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
@@ -81,22 +88,25 @@ export function LocationSwitcher({
               <DropdownMenuLabel className="text-xs text-muted-foreground">
                 Sedes
               </DropdownMenuLabel>
-              {locations.map((location, index) => (
-                <DropdownMenuItem
-                  key={location.commercialName}
-                  onClick={() => setActiveLocation(location)}
-                  className="gap-2 p-2"
-                >
-                  <div className="flex size-6 items-center justify-center rounded-sm border">
-                    <location.logo className="size-4 shrink-0" />
-                  </div>
-                  {location.commercialName}
-                  <DropdownMenuShortcut>
-                    {"\u2318"}
-                    {index + 1}
-                  </DropdownMenuShortcut>
-                </DropdownMenuItem>
-              ))}
+              {facilities.map((facility, index) => {
+                const LogoIcon = logoIcons[facility.logo]
+                return (
+                  <DropdownMenuItem
+                    key={facility.commercialName}
+                    onClick={() => setCurrentFacility(facility)}
+                    className="gap-2 p-2"
+                  >
+                    <div className="flex size-6 items-center justify-center rounded-sm border">
+                      <LogoIcon className="size-4 shrink-0" />
+                    </div>
+                    {facility.commercialName}
+                    <DropdownMenuShortcut>
+                      {"\u2318"}
+                      {index + 1}
+                    </DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                )
+              })}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="gap-2 p-2">

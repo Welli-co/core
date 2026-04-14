@@ -159,12 +159,12 @@ export async function getLoans(): Promise<LoanApplication[]> {
 }
 
 export const loanStateSlugs = {
-  "en-revision": "En revisión",
-  aprobados: "Aprobado",
-  "en-progreso": "En progreso",
-  completados: "Completado",
-  cerrados: "Cerrado",
-  rechazados: "Rechazado",
+  reviewing: "En revisión",
+  approved: "Aprobado",
+  "in-progress": "En progreso",
+  completed: "Completado",
+  closed: "Cerrado",
+  rejected: "Rechazado",
 } as const satisfies Record<string, LoanStatus>
 
 export type LoanStateSlug = keyof typeof loanStateSlugs

@@ -10,25 +10,22 @@ import {
   CircleHalfIcon,
   CirclesThreePlusIcon,
   ClockCountdownIcon,
-  CommandIcon,
   DeviceTabletSpeakerIcon,
   GearSixIcon,
   HandWithdrawIcon,
   HeartbeatIcon,
-  MapPinAreaIcon,
   PackageIcon,
   SealPercentIcon,
   StopCircleIcon,
-  UniteIcon,
   XCircleIcon,
   CurrencyCircleDollarIcon,
 } from "@phosphor-icons/react"
 
 import {
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-} from "@workspace/ui/components/drawer"
+  ResponsiveDialogDescription,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+} from "@workspace/ui/components/responsive-dialog"
 import {
   Sidebar,
   SidebarContent,
@@ -37,7 +34,7 @@ import {
   SidebarRail,
 } from "@workspace/ui/components/sidebar"
 
-import { LocationSwitcher } from "@/components/location-switcher"
+import { FacilitySwitcher } from "@/components/facility-switcher"
 import { NavUser } from "@/components/nav-user"
 import {
   SidebarNavGroup,
@@ -48,33 +45,9 @@ import {
   UserCircleCheckIcon,
 } from "@phosphor-icons/react/dist/ssr"
 
-const user = {
-  name: "Admin",
-  email: "admin@example.com",
-  avatar: "",
-}
-
-const locations = [
-  {
-    commercialName: "Dentix Sede La Playa",
-    logo: CommandIcon,
-    legalName: "DENTIX S.A.S",
-  },
-  {
-    commercialName: "Dentix Sede Chapinero",
-    logo: MapPinAreaIcon,
-    legalName: "DENTIX S.A.S",
-  },
-  {
-    commercialName: "Dentix Sede Suba Subsidiada",
-    logo: MapPinAreaIcon,
-    legalName: "DENTIX S.A.S",
-  },
-]
-
 const creditStatuses: SidebarNavItem[] = [
   {
-    title: "Pulso",
+    title: "Monitor de operación",
     url: "/",
     icon: HeartbeatIcon,
     iconWeight: "duotone",
@@ -82,28 +55,28 @@ const creditStatuses: SidebarNavItem[] = [
   },
   {
     title: "Aplicaciones",
-    url: "/creditos",
+    url: "/credits",
     icon: UserListIcon,
     iconWeight: "duotone",
     iconClassName: "text-muted-foreground",
     items: [
       {
-        title: "Rechazados",
-        url: "/rechazados",
+        title: "Rechazadas",
+        url: "/rejected",
         icon: XCircleIcon,
         iconWeight: "fill",
         iconClassName: "text-rose-500",
       },
       {
         title: "En revisión",
-        url: "/en-revision",
+        url: "/reviewing",
         icon: CircleDashedIcon,
         iconWeight: "bold",
         iconClassName: "text-orange-500",
       },
       {
         title: "Pre-aprobados",
-        url: "/aprobados",
+        url: "/approved",
         icon: ClockCountdownIcon,
         iconWeight: "fill",
         iconClassName: "text-sky-500",
@@ -111,21 +84,21 @@ const creditStatuses: SidebarNavItem[] = [
       },
       {
         title: "Solicitar desembolso",
-        url: "/active",
+        url: "/in-progress",
         icon: CurrencyCircleDollarIcon,
         iconWeight: "fill",
         iconClassName: "text-purple-500",
       },
       {
         title: "En firme",
-        url: "/active",
+        url: "/completed",
         icon: CheckCircleIcon,
         iconWeight: "fill",
         iconClassName: "text-green-500",
       },
       {
-        title: "Cerrados",
-        url: "/ended",
+        title: "Cerradas",
+        url: "/closed",
         icon: StopCircleIcon,
         iconWeight: "fill",
         iconClassName: "text-neutral-500",
@@ -155,11 +128,6 @@ const salesChannels: SidebarNavItem[] = [
     url: "/code",
     icon: AppWindowIcon,
   },
-  {
-    title: "Integradores",
-    url: "/integrators",
-    icon: UniteIcon,
-  },
 ]
 
 const company: SidebarNavItem[] = [
@@ -178,18 +146,18 @@ const medicalEquipment: SidebarNavItem[] = [
     url: "#",
     icon: CirclesThreePlusIcon,
     trailingIcon: HandWithdrawIcon,
-    drawer: (
+    overlay: (
       <>
-        <DrawerHeader className="sr-only">
-          <DrawerTitle>Solicitar crédito</DrawerTitle>
-          <DrawerDescription>
-            Completa la solicitud de crédito en el portal de equipos médicos.
-          </DrawerDescription>
-        </DrawerHeader>
+        <ResponsiveDialogHeader className="sr-only">
+          <ResponsiveDialogTitle>Solicitar crédito</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>
+            Completa la solicitud en el portal de equipos médicos de Welli.
+          </ResponsiveDialogDescription>
+        </ResponsiveDialogHeader>
         <iframe
           src="https://stgappmedicos.welli.com.co/"
           title="Solicitar crédito"
-          className="mt-4 h-[85vh] w-full rounded-4xl border-6"
+          className="h-[70vh] w-full rounded-2xl border bg-background"
         />
       </>
     ),
@@ -206,7 +174,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader className="border-b">
-        <LocationSwitcher locations={locations} />
+        <FacilitySwitcher />
       </SidebarHeader>
       <SidebarContent className="divide-y">
         <SidebarNavGroup label="CREDITOS PACIENTES" items={creditStatuses} />
@@ -223,7 +191,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
       <SidebarFooter className="divide-y px-0">
         <SidebarNavGroup items={company} hideWhenCollapsed />
-        <NavUser user={user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

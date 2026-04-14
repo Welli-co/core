@@ -20,9 +20,7 @@ import {
   type LoanStatus,
 } from "@/data/loans"
 
-import { loanColumns } from "../_components/loans-columns"
-import { LoansTable } from "../_components/loans-table"
-import { LoansToolbar } from "../_components/loans-toolbar"
+import { LoansListing } from "../_components/loans-listing"
 
 const statusIcons: Record<
   LoanStatus,
@@ -57,7 +55,7 @@ export default async function StatePage({
 
   return (
     <main className="divide-y">
-      <LoansToolbar
+      <LoansListing
         title="Creditos Pacientes"
         badge={
           <Badge
@@ -68,8 +66,8 @@ export default async function StatePage({
             {status}
           </Badge>
         }
+        loans={loans}
       />
-      <LoansTable columns={loanColumns} data={loans} />
     </main>
   )
 }

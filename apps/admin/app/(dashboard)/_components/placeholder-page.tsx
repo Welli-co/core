@@ -6,7 +6,8 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@workspace/ui/components/empty"
-import { TypographyH1 } from "@workspace/ui/components/typography"
+
+import { PageHeader } from "./page-header"
 
 type PlaceholderPageProps = {
   title: string
@@ -24,9 +25,7 @@ export function PlaceholderPage({
 }: PlaceholderPageProps) {
   return (
     <main className="divide-y">
-      <section className="flex min-h-18.25 items-center justify-between p-4">
-        <TypographyH1 className="text-lg leading-none">{title}</TypographyH1>
-      </section>
+      <PageHeader title={title} />
       <section className="flex flex-1 p-4">
         <Empty className="border">
           <EmptyHeader>

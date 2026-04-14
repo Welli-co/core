@@ -16,12 +16,12 @@ import {
   TableRow,
 } from "@workspace/ui/components/table"
 
-type LoansTableProps<TData> = {
+type DataTableProps<TData> = {
   columns: ColumnDef<TData>[]
   data: TData[]
 }
 
-export function LoansTable<TData>({ columns, data }: LoansTableProps<TData>) {
+export function DataTable<TData>({ columns, data }: DataTableProps<TData>) {
   const table = useReactTable({
     data,
     columns,
@@ -32,7 +32,10 @@ export function LoansTable<TData>({ columns, data }: LoansTableProps<TData>) {
     <Table>
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
-          <TableRow key={headerGroup.id} className="hover:bg-transparent">
+          <TableRow
+            key={headerGroup.id}
+            className="[&>*:first-child]:pl-4 hover:bg-transparent"
+          >
             {headerGroup.headers.map((header) => (
               <TableHead
                 key={header.id}
@@ -57,7 +60,7 @@ export function LoansTable<TData>({ columns, data }: LoansTableProps<TData>) {
       <TableBody>
         {table.getRowModel().rows.length ? (
           table.getRowModel().rows.map((row) => (
-            <TableRow key={row.id}>
+            <TableRow key={row.id} className="[&>*:first-child]:pl-4">
               {row.getVisibleCells().map((cell) => (
                 <TableCell key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}

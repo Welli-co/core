@@ -1,4 +1,4 @@
-import { WhatsappLogoIcon } from "@phosphor-icons/react/ssr"
+import { PlugsConnectedIcon } from "@phosphor-icons/react/ssr"
 
 import {
   Empty,
@@ -8,21 +8,20 @@ import {
   EmptyTitle,
 } from "@workspace/ui/components/empty"
 
-export default function WebchatPage() {
+export default function ConnectedIntegratorsPage() {
   return (
     <section className="flex p-4">
       <Empty className="border">
         <EmptyHeader>
           <EmptyMedia variant="icon">
-            <WhatsappLogoIcon
+            <PlugsConnectedIcon
               weight="duotone"
               className="text-muted-foreground"
             />
           </EmptyMedia>
-          <EmptyTitle>Webchat</EmptyTitle>
+          <EmptyTitle>Conectados</EmptyTitle>
           <EmptyDescription>
-            Configura el chat en vivo para atender a tus pacientes desde tu
-            sitio web.
+            Administra las integraciones que tienes activas en tu cuenta.
           </EmptyDescription>
         </EmptyHeader>
       </Empty>

@@ -1,13 +1,28 @@
 import { UniteIcon } from "@phosphor-icons/react/ssr"
 
-import { PlaceholderPage } from "../_components/placeholder-page"
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@workspace/ui/components/empty"
 
 export default function IntegratorsPage() {
   return (
-    <PlaceholderPage
-      title="Integradores"
-      description="Conecta con integradores externos para extender las capacidades de Welli."
-      icon={UniteIcon}
-    />
+    <section className="flex p-4">
+      <Empty className="border">
+        <EmptyHeader>
+          <EmptyMedia variant="icon">
+            <UniteIcon weight="duotone" className="text-muted-foreground" />
+          </EmptyMedia>
+          <EmptyTitle>Disponibles</EmptyTitle>
+          <EmptyDescription>
+            Explora las integraciones disponibles y conecta tus herramientas
+            favoritas.
+          </EmptyDescription>
+        </EmptyHeader>
+      </Empty>
+    </section>
   )
 }

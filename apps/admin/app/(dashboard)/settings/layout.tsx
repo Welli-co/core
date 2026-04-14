@@ -1,4 +1,4 @@
-import { TypographyH1 } from "@workspace/ui/components/typography"
+import { PageHeader } from "../_components/page-header"
 
 import { SettingsTabs } from "./_components/settings-tabs"
 
@@ -9,12 +9,11 @@ export default function SettingsLayout({
 }) {
   return (
     <main className="divide-y">
-      <section className="flex flex-col gap-3 p-4">
-        <TypographyH1 className="text-lg leading-none">
-          Configuración
-        </TypographyH1>
-        <SettingsTabs />
-      </section>
+      <PageHeader
+        title="Configuración"
+        description="Adminstra tus usuarios, sedes, cuentas bancarias e información legal"
+      />
+      <SettingsTabs />
       {children}
     </main>
   )

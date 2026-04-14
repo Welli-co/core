@@ -1,27 +1,18 @@
-import { BuildingsIcon } from "@phosphor-icons/react/ssr"
+import { getFacilities } from "@/data/session"
+import { getCollaboratorCountByFacility } from "@/data/users"
 
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@workspace/ui/components/empty"
+import { FacilitiesTable } from "./_components/facilities-table"
 
-export default function FacilitiesPage() {
-  return (
-    <section className="flex p-4">
-      <Empty className="border">
-        <EmptyHeader>
-          <EmptyMedia variant="icon">
-            <BuildingsIcon weight="duotone" className="text-muted-foreground" />
-          </EmptyMedia>
-          <EmptyTitle>Sedes</EmptyTitle>
-          <EmptyDescription>
-            Administra las sedes y consultorios donde atiendes a tus pacientes.
-          </EmptyDescription>
-        </EmptyHeader>
-      </Empty>
-    </section>
-  )
+export default async function FacilitiesPage() {
+  const [facilities, countByFacility] = await Promise.all([
+    getFacilities(),
+    getCollaboratorCountByFacility(),
+  ])
+
+  const rows = facilities.map((facility) => ({
+    ...facility,
+    collaboratorCount: countByFacility[facility.id] ?? 0,
+  }))
+
+  return <FacilitiesTable facilities={rows} />
 }

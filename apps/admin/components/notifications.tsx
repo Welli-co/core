@@ -37,7 +37,7 @@ export function Notifications() {
               />
             }
           >
-            <NotificationIcon className="size-5" weight="duotone" />
+            <NotificationIcon className="size-4.5" weight="bold" />
           </TooltipTrigger>
           <TooltipContent>Notificaciones</TooltipContent>
         </Tooltip>

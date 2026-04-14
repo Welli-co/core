@@ -12,7 +12,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@workspace/ui/components/tooltip"
-import { TypographyH1 } from "@workspace/ui/components/typography"
+
+import { PageHeader } from "./page-header"
 
 type LoansToolbarProps = {
   title: string
@@ -21,13 +22,15 @@ type LoansToolbarProps = {
 
 export function LoansToolbar({ title, badge }: LoansToolbarProps) {
   return (
-    <section className="flex items-center justify-between p-4">
-      <div className="flex items-center gap-2">
-        <TypographyH1 className="text-lg leading-none">{title}</TypographyH1>
-        {badge}
-      </div>
-      <TooltipProvider delay={200}>
-        <div className="flex gap-1">
+    <PageHeader
+      title={
+        <div className="flex items-center gap-2">
+          <span>{title}</span>
+          {badge}
+        </div>
+      }
+      actions={
+        <TooltipProvider delay={200}>
           <Tooltip>
             <TooltipTrigger
               render={
@@ -103,8 +106,8 @@ export function LoansToolbar({ title, badge }: LoansToolbarProps) {
             </TooltipTrigger>
             <TooltipContent>Exportar a Excel</TooltipContent>
           </Tooltip>
-        </div>
-      </TooltipProvider>
-    </section>
+        </TooltipProvider>
+      }
+    />
   )
 }

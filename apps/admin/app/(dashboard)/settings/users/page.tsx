@@ -1,27 +1,9 @@
-import { UsersThreeIcon } from "@phosphor-icons/react/ssr"
+import { getCollaborators } from "@/data/users"
 
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@workspace/ui/components/empty"
+import { UsersTable } from "./_components/users-table"
 
-export default function UsersPage() {
-  return (
-    <section className="flex p-4">
-      <Empty className="border">
-        <EmptyHeader>
-          <EmptyMedia variant="icon">
-            <UsersThreeIcon weight="duotone" className="text-muted-foreground" />
-          </EmptyMedia>
-          <EmptyTitle>Usuarios</EmptyTitle>
-          <EmptyDescription>
-            Invita, gestiona y asigna roles a los usuarios de tu empresa.
-          </EmptyDescription>
-        </EmptyHeader>
-      </Empty>
-    </section>
-  )
+export default async function UsersPage() {
+  const collaborators = await getCollaborators()
+
+  return <UsersTable collaborators={collaborators} />
 }

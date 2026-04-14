@@ -1,27 +1,9 @@
-import { BankIcon } from "@phosphor-icons/react/ssr"
+import { getBankAccounts } from "@/data/bank-accounts"
 
-import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@workspace/ui/components/empty"
+import { BankAccountsTable } from "./_components/bank-accounts-table"
 
-export default function BillingPage() {
-  return (
-    <section className="flex p-4">
-      <Empty className="border">
-        <EmptyHeader>
-          <EmptyMedia variant="icon">
-            <BankIcon weight="duotone" className="text-muted-foreground" />
-          </EmptyMedia>
-          <EmptyTitle>Facturación</EmptyTitle>
-          <EmptyDescription>
-            Gestiona cuentas bancarias, facturas y métodos de pago.
-          </EmptyDescription>
-        </EmptyHeader>
-      </Empty>
-    </section>
-  )
+export default async function BillingPage() {
+  const accounts = await getBankAccounts()
+
+  return <BankAccountsTable accounts={accounts} />
 }
