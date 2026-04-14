@@ -1,0 +1,32 @@
+# Dependencies & build output
+**/node_modules
+**/.next
+**/.turbo
+**/dist
+**/coverage
+
+# VCS & editor
+.git
+.github
+.gitignore
+.vscode
+.idea
+.DS_Store
+
+# Environment secrets — NEVER bake into image
+**/.env
+**/.env.*
+!**/.env.example
+
+# Docs & misc
+**/*.md
+LICENSE
+
+# NOTE: don't exclude apps/storybook — pnpm workspace needs its package.json
+# at install time. Its source is never built (we run `turbo build --filter=admin`)
+# and doesn't end up in the runner stage.
+
+# Deploy configs (not needed inside image)
+cloudbuild
+Dockerfile
+.dockerignore
