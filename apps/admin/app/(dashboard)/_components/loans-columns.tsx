@@ -7,25 +7,12 @@ import { Badge } from "@workspace/ui/components/badge"
 import { cn } from "@workspace/ui/lib/utils"
 
 import {
+  avatarGradientByStatus,
   currency,
   getInitials,
   statusStyles,
   type LoanApplication,
-  type LoanStatus,
 } from "@/data/loans"
-
-const avatarGradientByStatus: Record<LoanStatus, string> = {
-  "En revisión":
-    "bg-radial-[at_25%_25%] from-orange-300 to-orange-600 text-white",
-  Aprobado: "bg-radial-[at_25%_25%] from-sky-300 to-sky-600 text-white",
-  "En progreso":
-    "bg-radial-[at_25%_25%] from-indigo-300 to-indigo-600 text-white",
-  Completado:
-    "bg-radial-[at_25%_25%] from-emerald-300 to-emerald-600 text-white",
-  Cerrado:
-    "bg-radial-[at_25%_25%] from-neutral-300 to-neutral-600 text-white",
-  Rechazado: "bg-radial-[at_25%_25%] from-rose-300 to-rose-600 text-white",
-}
 
 export const loanColumns: ColumnDef<LoanApplication>[] = [
   {

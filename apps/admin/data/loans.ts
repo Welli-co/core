@@ -34,6 +34,19 @@ export const statusStyles: Record<LoanStatus, string> = {
   Rechazado: "bg-rose-100 text-rose-700 hover:bg-rose-100",
 }
 
+export const avatarGradientByStatus: Record<LoanStatus, string> = {
+  "En revisión":
+    "bg-radial-[at_25%_25%] from-orange-300 to-orange-600 text-white",
+  Aprobado: "bg-radial-[at_25%_25%] from-sky-300 to-sky-600 text-white",
+  "En progreso":
+    "bg-radial-[at_25%_25%] from-indigo-300 to-indigo-600 text-white",
+  Completado:
+    "bg-radial-[at_25%_25%] from-emerald-300 to-emerald-600 text-white",
+  Cerrado:
+    "bg-radial-[at_25%_25%] from-neutral-300 to-neutral-600 text-white",
+  Rechazado: "bg-radial-[at_25%_25%] from-rose-300 to-rose-600 text-white",
+}
+
 const loans: LoanApplication[] = [
   {
     id: "CR-10001",
