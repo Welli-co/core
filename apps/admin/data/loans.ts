@@ -4,6 +4,7 @@ export type LoanStatus =
   | "En progreso"
   | "Completado"
   | "Cerrado"
+  | "Rechazado"
 
 export type LoanApplication = {
   id: string
@@ -30,6 +31,7 @@ export const statusStyles: Record<LoanStatus, string> = {
   "En progreso": "bg-indigo-100 text-indigo-700 hover:bg-indigo-100",
   Completado: "bg-emerald-100 text-emerald-700 hover:bg-emerald-100",
   Cerrado: "bg-neutral-100 text-neutral-700 hover:bg-neutral-100",
+  Rechazado: "bg-rose-100 text-rose-700 hover:bg-rose-100",
 }
 
 const loans: LoanApplication[] = [
@@ -162,6 +164,7 @@ export const loanStateSlugs = {
   "en-progreso": "En progreso",
   completados: "Completado",
   cerrados: "Cerrado",
+  rechazados: "Rechazado",
 } as const satisfies Record<string, LoanStatus>
 
 export type LoanStateSlug = keyof typeof loanStateSlugs

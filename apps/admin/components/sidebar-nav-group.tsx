@@ -1,9 +1,18 @@
 "use client"
 
 import type { IconWeight } from "@phosphor-icons/react"
-import { ArrowUpRightIcon } from "@phosphor-icons/react/ssr"
+import {
+  ArrowUpRightIcon,
+  FunnelSimpleIcon,
+  FunnelSimpleXIcon,
+} from "@phosphor-icons/react/ssr"
 import { usePathname } from "next/navigation"
 
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@workspace/ui/components/collapsible"
 import {
   Drawer,
   DrawerContent,
@@ -13,9 +22,13 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from "@workspace/ui/components/sidebar"
 import { cn } from "@workspace/ui/lib/utils"
 
@@ -29,6 +42,7 @@ export type SidebarNavItem = {
   external?: boolean
   trailingIcon?: React.ElementType
   drawer?: React.ReactNode
+  items?: SidebarNavItem[]
 }
 
 type SidebarNavGroupProps = {
@@ -46,7 +60,9 @@ export function SidebarNavGroup({
 
   return (
     <SidebarGroup
-      className={cn(hideWhenCollapsed && "group-data-[collapsible=icon]:hidden")}
+      className={cn(
+        hideWhenCollapsed && "group-data-[collapsible=icon]:hidden"
+      )}
     >
       {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
       <SidebarMenu>
@@ -84,6 +100,62 @@ export function SidebarNavGroup({
               )}
             </SidebarMenuButton>
           )
+
+          if (item.items && item.items.length > 0) {
+            const hasActiveChild = item.items.some(
+              (sub) => pathname === sub.url
+            )
+            return (
+              <Collapsible
+                key={item.title}
+                defaultOpen
+                render={<SidebarMenuItem />}
+              >
+                <SidebarMenuButton
+                  tooltip={item.title}
+                  isActive={isActive}
+                  render={<a href={item.url} />}
+                >
+                  <item.icon
+                    weight={item.iconWeight ?? "duotone"}
+                    className={item.iconClassName ?? "text-muted-foreground"}
+                  />
+                  <span className="font-medium">{item.title}</span>
+                </SidebarMenuButton>
+                <CollapsibleTrigger
+                  render={
+                    <SidebarMenuAction
+                      aria-label={`Alternar ${item.title}`}
+                      className="group-data-[collapsible=icon]:hidden"
+                    />
+                  }
+                >
+                  <FunnelSimpleIcon className="size-4 text-muted-foreground group-data-[panel-open]:hidden" />
+                  <FunnelSimpleXIcon className="hidden size-4 text-muted-foreground group-data-[panel-open]:block" />
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {item.items.map((sub) => (
+                      <SidebarMenuSubItem key={sub.title}>
+                        <SidebarMenuSubButton
+                          isActive={pathname === sub.url}
+                          render={<a href={sub.url} />}
+                        >
+                          <sub.icon
+                            weight={sub.iconWeight ?? "duotone"}
+                            className={
+                              sub.iconClassName ?? "text-muted-foreground"
+                            }
+                          />
+                          <span className="font-medium">{sub.title}</span>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </Collapsible>
+            )
+          }
 
           return (
             <SidebarMenuItem key={item.title}>

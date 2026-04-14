@@ -3,7 +3,8 @@
 import * as React from "react"
 import {
   AppWindowIcon,
-  ChatCircleTextIcon,
+  UserListIcon,
+  WhatsappLogoIcon,
   CheckCircleIcon,
   CircleDashedIcon,
   CircleHalfIcon,
@@ -11,6 +12,7 @@ import {
   ClockCountdownIcon,
   CommandIcon,
   DeviceTabletSpeakerIcon,
+  GearSixIcon,
   HandWithdrawIcon,
   HeartbeatIcon,
   MapPinAreaIcon,
@@ -18,6 +20,8 @@ import {
   SealPercentIcon,
   StopCircleIcon,
   UniteIcon,
+  XCircleIcon,
+  CurrencyCircleDollarIcon,
 } from "@phosphor-icons/react"
 
 import {
@@ -39,6 +43,10 @@ import {
   SidebarNavGroup,
   type SidebarNavItem,
 } from "@/components/sidebar-nav-group"
+import {
+  HandArrowDownIcon,
+  UserCircleCheckIcon,
+} from "@phosphor-icons/react/dist/ssr"
 
 const user = {
   name: "Admin",
@@ -66,48 +74,63 @@ const locations = [
 
 const creditStatuses: SidebarNavItem[] = [
   {
-    title: "En revisión",
-    url: "/en-revision",
-    icon: CircleDashedIcon,
-    iconWeight: "bold",
-    iconClassName: "text-orange-500",
-  },
-  {
-    title: "Aprobados",
-    url: "/aprobados",
-    icon: CircleHalfIcon,
-    iconWeight: "fill",
-    iconClassName: "text-sky-500",
-    count: 1,
-  },
-  {
-    title: "En progreso",
-    url: "/en-progreso",
-    icon: ClockCountdownIcon,
-    iconWeight: "fill",
-    iconClassName: "text-indigo-500",
-  },
-  {
-    title: "Completados",
-    url: "/completados",
-    icon: CheckCircleIcon,
-    iconWeight: "fill",
-    iconClassName: "text-emerald-500",
-    count: 4,
-  },
-  {
-    title: "Cerrados",
-    url: "/cerrados",
-    icon: StopCircleIcon,
-    iconWeight: "fill",
-    iconClassName: "text-neutral-500",
-  },
-  {
     title: "Pulso",
     url: "/",
     icon: HeartbeatIcon,
     iconWeight: "duotone",
     iconClassName: "text-muted-foreground animate-pulse",
+  },
+  {
+    title: "Aplicaciones",
+    url: "/creditos",
+    icon: UserListIcon,
+    iconWeight: "duotone",
+    iconClassName: "text-muted-foreground",
+    items: [
+      {
+        title: "Rechazados",
+        url: "/rechazados",
+        icon: XCircleIcon,
+        iconWeight: "fill",
+        iconClassName: "text-rose-500",
+      },
+      {
+        title: "En revisión",
+        url: "/en-revision",
+        icon: CircleDashedIcon,
+        iconWeight: "bold",
+        iconClassName: "text-orange-500",
+      },
+      {
+        title: "Pre-aprobados",
+        url: "/aprobados",
+        icon: ClockCountdownIcon,
+        iconWeight: "fill",
+        iconClassName: "text-sky-500",
+        count: 10,
+      },
+      {
+        title: "Solicitar desembolso",
+        url: "/active",
+        icon: CurrencyCircleDollarIcon,
+        iconWeight: "fill",
+        iconClassName: "text-purple-500",
+      },
+      {
+        title: "En firme",
+        url: "/active",
+        icon: CheckCircleIcon,
+        iconWeight: "fill",
+        iconClassName: "text-green-500",
+      },
+      {
+        title: "Cerrados",
+        url: "/ended",
+        icon: StopCircleIcon,
+        iconWeight: "fill",
+        iconClassName: "text-neutral-500",
+      },
+    ],
   },
 ]
 
@@ -116,16 +139,6 @@ const salesChannels: SidebarNavItem[] = [
     title: "Welli App",
     url: "#",
     icon: DeviceTabletSpeakerIcon,
-    trailingIcon: HandWithdrawIcon,
-    drawer: (
-      <DrawerHeader>
-        <DrawerTitle>Welli App</DrawerTitle>
-        <DrawerDescription>
-          Solicita un desembolso o comparte el acceso a la aplicación con tus
-          pacientes.
-        </DrawerDescription>
-      </DrawerHeader>
-    ),
   },
   {
     title: "Welli Benefits",
@@ -135,7 +148,7 @@ const salesChannels: SidebarNavItem[] = [
   {
     title: "Welli Check WhatsApp",
     url: "/check",
-    icon: ChatCircleTextIcon,
+    icon: WhatsappLogoIcon,
   },
   {
     title: "Welli Website Widget",
@@ -149,12 +162,37 @@ const salesChannels: SidebarNavItem[] = [
   },
 ]
 
+const company: SidebarNavItem[] = [
+  {
+    title: "Configuración",
+    url: "/settings",
+    icon: GearSixIcon,
+    iconWeight: "duotone",
+    iconClassName: "text-muted-foreground",
+  },
+]
+
 const medicalEquipment: SidebarNavItem[] = [
   {
     title: "Solicitar crédito",
     url: "#",
     icon: CirclesThreePlusIcon,
-    external: true,
+    trailingIcon: HandWithdrawIcon,
+    drawer: (
+      <>
+        <DrawerHeader className="sr-only">
+          <DrawerTitle>Solicitar crédito</DrawerTitle>
+          <DrawerDescription>
+            Completa la solicitud de crédito en el portal de equipos médicos.
+          </DrawerDescription>
+        </DrawerHeader>
+        <iframe
+          src="https://stgappmedicos.welli.com.co/"
+          title="Solicitar crédito"
+          className="mt-4 h-[85vh] w-full rounded-4xl border-6"
+        />
+      </>
+    ),
   },
   {
     title: "Mis equipos médicos",
@@ -183,7 +221,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           hideWhenCollapsed
         />
       </SidebarContent>
-      <SidebarFooter className="border-t">
+      <SidebarFooter className="divide-y px-0">
+        Onboarding
+        <SidebarNavGroup items={company} hideWhenCollapsed />
         <NavUser user={user} />
       </SidebarFooter>
       <SidebarRail />

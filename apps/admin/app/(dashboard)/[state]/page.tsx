@@ -6,6 +6,7 @@ import {
   CircleHalfIcon,
   ClockCountdownIcon,
   StopCircleIcon,
+  XCircleIcon,
 } from "@phosphor-icons/react/ssr"
 import { Badge } from "@workspace/ui/components/badge"
 import { cn } from "@workspace/ui/lib/utils"
@@ -35,6 +36,7 @@ const statusIcons: Record<
   "En progreso": { icon: ClockCountdownIcon, weight: "fill" },
   Completado: { icon: CheckCircleIcon, weight: "fill" },
   Cerrado: { icon: StopCircleIcon, weight: "fill" },
+  Rechazado: { icon: XCircleIcon, weight: "fill" },
 }
 
 export default async function StatePage({

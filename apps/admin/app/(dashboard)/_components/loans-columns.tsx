@@ -24,6 +24,7 @@ const avatarGradientByStatus: Record<LoanStatus, string> = {
     "bg-radial-[at_25%_25%] from-emerald-300 to-emerald-600 text-white",
   Cerrado:
     "bg-radial-[at_25%_25%] from-neutral-300 to-neutral-600 text-white",
+  Rechazado: "bg-radial-[at_25%_25%] from-rose-300 to-rose-600 text-white",
 }
 
 export const loanColumns: ColumnDef<LoanApplication>[] = [
