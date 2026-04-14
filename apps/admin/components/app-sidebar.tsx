@@ -222,7 +222,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         />
       </SidebarContent>
       <SidebarFooter className="divide-y px-0">
-        Onboarding
         <SidebarNavGroup items={company} hideWhenCollapsed />
         <NavUser user={user} />
       </SidebarFooter>
