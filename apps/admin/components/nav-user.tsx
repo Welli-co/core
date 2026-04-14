@@ -2,7 +2,7 @@
 
 import {
   Bell,
-  CaretUpDown,
+  DotsThreeVertical,
   CreditCard,
   SignOut,
   Sparkle,
@@ -68,7 +68,7 @@ export function NavUser({
               <span className="truncate font-semibold">{user.name}</span>
               <span className="truncate text-xs">{user.email}</span>
             </div>
-            <CaretUpDown className="ml-auto size-4" />
+            <DotsThreeVertical className="ml-auto size-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"

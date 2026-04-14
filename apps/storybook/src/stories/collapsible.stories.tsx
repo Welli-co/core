@@ -5,7 +5,7 @@ import {
   CollapsibleContent,
 } from "@workspace/ui/components/collapsible"
 import { Button } from "@workspace/ui/components/button"
-import { CaretUpDown } from "@phosphor-icons/react"
+import { DotsThreeVertical } from "@phosphor-icons/react"
 
 const meta: Meta<typeof Collapsible> = {
   title: "UI/Collapsible",
@@ -21,7 +21,7 @@ export const Default: Story = {
       <div className="flex items-center justify-between gap-4 px-4">
         <h4 className="text-sm font-semibold">3 repositorios fijados</h4>
         <CollapsibleTrigger render={<Button variant="ghost" size="icon-sm" />}>
-          <CaretUpDown weight="bold" />
+          <DotsThreeVertical weight="bold" />
           <span className="sr-only">Alternar</span>
         </CollapsibleTrigger>
       </div>

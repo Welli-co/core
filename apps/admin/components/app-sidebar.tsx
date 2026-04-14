@@ -13,6 +13,9 @@ import {
   Package,
   DeviceTabletSpeaker,
   SealPercent,
+  ChatCircleText,
+  AppWindow,
+  Unite,
 } from "@phosphor-icons/react/ssr"
 
 import {
@@ -110,6 +113,21 @@ const data = {
       name: "Welli Benefits",
       url: "#",
       icon: SealPercent,
+    },
+    {
+      name: "Welli Check WhatsApp",
+      url: "#",
+      icon: ChatCircleText,
+    },
+    {
+      name: "Welli Website Widget",
+      url: "#",
+      icon: AppWindow,
+    },
+    {
+      name: "Integradores",
+      url: "#",
+      icon: Unite,
     },
   ],
 }

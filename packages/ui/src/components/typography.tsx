@@ -1,14 +1,11 @@
 import { cn } from "@workspace/ui/lib/utils"
 
-function TypographyH1({
-  className,
-  ...props
-}: React.ComponentProps<"h1">) {
+function TypographyH1({ className, ...props }: React.ComponentProps<"h1">) {
   return (
     <h1
       data-slot="typography-h1"
       className={cn(
-        "scroll-m-20 font-heading text-4xl font-extrabold tracking-tight text-balance",
+        "scroll-m-20 font-heading text-4xl font-semibold tracking-tight text-balance",
         className
       )}
       {...props}
@@ -16,10 +13,7 @@ function TypographyH1({
   )
 }
 
-function TypographyH2({
-  className,
-  ...props
-}: React.ComponentProps<"h2">) {
+function TypographyH2({ className, ...props }: React.ComponentProps<"h2">) {
   return (
     <h2
       data-slot="typography-h2"
@@ -32,10 +26,7 @@ function TypographyH2({
   )
 }
 
-function TypographyH3({
-  className,
-  ...props
-}: React.ComponentProps<"h3">) {
+function TypographyH3({ className, ...props }: React.ComponentProps<"h3">) {
   return (
     <h3
       data-slot="typography-h3"
@@ -48,10 +39,7 @@ function TypographyH3({
   )
 }
 
-function TypographyH4({
-  className,
-  ...props
-}: React.ComponentProps<"h4">) {
+function TypographyH4({ className, ...props }: React.ComponentProps<"h4">) {
   return (
     <h4
       data-slot="typography-h4"
@@ -64,10 +52,7 @@ function TypographyH4({
   )
 }
 
-function TypographyP({
-  className,
-  ...props
-}: React.ComponentProps<"p">) {
+function TypographyP({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="typography-p"
@@ -106,10 +91,7 @@ function TypographyInlineCode({
   )
 }
 
-function TypographyLead({
-  className,
-  ...props
-}: React.ComponentProps<"p">) {
+function TypographyLead({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="typography-lead"
@@ -119,10 +101,7 @@ function TypographyLead({
   )
 }
 
-function TypographyLarge({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function TypographyLarge({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="typography-large"
@@ -145,10 +124,7 @@ function TypographySmall({
   )
 }
 
-function TypographyMuted({
-  className,
-  ...props
-}: React.ComponentProps<"p">) {
+function TypographyMuted({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="typography-muted"
@@ -158,10 +134,7 @@ function TypographyMuted({
   )
 }
 
-function TypographyList({
-  className,
-  ...props
-}: React.ComponentProps<"ul">) {
+function TypographyList({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-slot="typography-list"

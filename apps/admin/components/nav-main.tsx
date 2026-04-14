@@ -23,8 +23,8 @@ export type NavMainItem = {
 export function NavMain({ items }: { items: NavMainItem[] }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel className="font-semibold tracking-widest text-muted-foreground uppercase">
-Creditos Pacientes
+      <SidebarGroupLabel className="font-semibold tracking-wider text-muted-foreground uppercase">
+        Creditos Pacientes
       </SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
