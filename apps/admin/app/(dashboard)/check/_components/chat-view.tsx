@@ -74,15 +74,21 @@ export function ChatView({ conversation }: ChatViewProps) {
           </Tooltip>
         </TooltipProvider>
       </header>
-      <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4">
-        {conversation.messages.map((message) => (
-          <ChatMessage
-            key={message.id}
-            message={message}
-            patientInitials={initials}
-            patientStatus={conversation.status}
-          />
-        ))}
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[url(/whatsapp-bg.png)] bg-contain bg-center opacity-50"
+        />
+        <div className="relative flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto p-4">
+          {conversation.messages.map((message) => (
+            <ChatMessage
+              key={message.id}
+              message={message}
+              patientInitials={initials}
+              patientStatus={conversation.status}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

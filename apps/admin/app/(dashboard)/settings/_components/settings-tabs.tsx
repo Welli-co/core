@@ -21,7 +21,7 @@ export function SettingsTabs() {
 
   return (
     <Tabs value={active}>
-      <TabsList variant="line" className="px-2">
+      <TabsList variant="line" className="px-2 group-data-horizontal/tabs:h-10">
         {settingsTabs.map((tab) => (
           <TabsTrigger
             key={tab.href}

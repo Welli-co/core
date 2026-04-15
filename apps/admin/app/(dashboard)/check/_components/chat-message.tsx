@@ -26,7 +26,9 @@ export function ChatMessage({
         isSystem && "flex-row-reverse"
       )}
     >
-      {!isSystem && (
+      {isSystem ? (
+        <div aria-hidden className="size-8 shrink-0" />
+      ) : (
         <Avatar className="size-8">
           <AvatarFallback
             className={cn(

@@ -46,8 +46,7 @@ RUN addgroup --system --gid 1001 nodejs && \
 # workspace packages like @workspace/ui are included.
 COPY --from=builder --chown=nextjs:nodejs /app/apps/admin/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/apps/admin/.next/static ./apps/admin/.next/static
-# No /apps/admin/public dir currently — favicon lives in app/favicon.ico.
-# Re-add a COPY line here if static assets are introduced.
+COPY --from=builder --chown=nextjs:nodejs /app/apps/admin/public ./apps/admin/public
 
 USER nextjs
 EXPOSE 8080

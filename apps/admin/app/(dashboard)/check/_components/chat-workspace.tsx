@@ -20,9 +20,9 @@ export function ChatWorkspace({ chats }: ChatWorkspaceProps) {
     chats.find((conversation) => conversation.id === activeId) ?? chats[0]
 
   return (
-    <main className="grid h-full grid-cols-[26rem_1fr] divide-x">
+    <div className="grid h-full grid-cols-[26rem_1fr] divide-x">
       <ChatList chats={chats} activeId={activeId} onSelect={setActiveId} />
       {active && <ChatView conversation={active} />}
-    </main>
+    </div>
   )
 }
